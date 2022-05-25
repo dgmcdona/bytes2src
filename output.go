@@ -18,7 +18,6 @@ type stringDumper struct {
 	r         byteReadSeeker
 	inputSize int
 	lf        languageFormat
-	nread     int
 	width     int
 }
 
@@ -45,13 +44,13 @@ var languageFormats = map[Language]languageFormat{
 	JavaScript: {
 		Initializer:           "= new UInt8Array[]",
 		ByteFmt:               "0x%02x",
-		BlockEnds:             []string{"([", "])"},
+		BlockEnds:             []string{"([", "]);"},
 		LastByteCommaRequired: false,
 	},
 	CSharp: {
 		Initializer:           "= new []byte",
 		ByteFmt:               "0x%02x",
-		BlockEnds:             []string{"{", "}"},
+		BlockEnds:             []string{"{", "};"},
 		LastByteCommaRequired: false,
 	},
 }
@@ -97,6 +96,7 @@ func (sd *stringDumper) WriteBytes() error {
 		if i < sd.inputSize-1 && (i+1)%sd.width != 0 {
 			sd.sb.WriteRune(' ')
 		}
+
 	}
 
 	return nil
@@ -121,7 +121,9 @@ func DumpString(r byteReadSeeker, lang Language, width int) (*string, error) {
 
 	sd.WriteHeader()
 
-	sd.WriteBytes()
+	if err := sd.WriteBytes(); err != nil {
+		return nil, fmt.Errorf("failed to write bytes: %w", err)
+	}
 
 	sd.WriteFooter()
 

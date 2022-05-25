@@ -17,6 +17,11 @@ Usage of bytes2src:
   -x	interpret input data as hex dump
 ```
 
+## Installation
+
+`go get github.com/dgmcdona/bytes2src/cmd/bytes2src` or download one of the
+releases.
+
 ## Examples
 ```
 $ cat /dev/urandom | head -c 1 | xxd | bytes2src -x -l golang
