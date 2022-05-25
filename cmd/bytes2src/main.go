@@ -2,11 +2,12 @@ package main
 
 import (
 	"bytes"
-	"bytes2src"
 	"flag"
 	"fmt"
 	"io"
 	"os"
+
+	"github.com/dgmcdona/bytes2src"
 )
 
 func main() {
