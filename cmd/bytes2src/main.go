@@ -25,12 +25,16 @@ func main() {
 	switch *lang {
 	case "go", "golang":
 		l = bytes2src.Go
-	case "javascript", "js", "JavaScript":
+	case "javascript", "js":
 		l = bytes2src.JavaScript
-	case "csharp", "c#", "C#", "CSharp":
+	case "csharp", "c#", "java":
 		l = bytes2src.CSharp
 	default:
-		fmt.Fprintf(os.Stderr, "supply a valid output language\n")
+		fmt.Fprintf(os.Stderr, "supply a valid output language:\n")
+		fmt.Fprintf(os.Stderr, "\tjava\n")
+		fmt.Fprintf(os.Stderr, "\tcsharp\n")
+		fmt.Fprintf(os.Stderr, "\tgo\n")
+		fmt.Fprintf(os.Stderr, "\tjavascript\n")
 		os.Exit(-1)
 	}
 
