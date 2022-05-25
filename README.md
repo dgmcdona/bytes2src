@@ -3,6 +3,7 @@
 This is a simple utility for converting binary data into a source code
 representation in multiple languages.
 
+```
 Usage of bytes2src:
   -f string
     	input file from which to read bytes
@@ -13,6 +14,7 @@ Usage of bytes2src:
   -w int
     	width of the source code array output (default 8)
   -x	interpret input data as hex dump
+```
 
 ## Examples
 ```
