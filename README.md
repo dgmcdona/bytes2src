@@ -19,7 +19,7 @@ Usage of bytes2src:
 
 ## Installation
 
-`go get github.com/dgmcdona/bytes2src/cmd/bytes2src@latest` or download one of
+`go install github.com/dgmcdona/bytes2src/cmd/bytes2src@latest` or download one of
 the releases.
 
 ## Examples
