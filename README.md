@@ -19,8 +19,8 @@ Usage of bytes2src:
 
 ## Installation
 
-`go get github.com/dgmcdona/bytes2src/cmd/bytes2src` or download one of the
-releases.
+`go get github.com/dgmcdona/bytes2src/cmd/bytes2src@latest` or download one of
+the releases.
 
 ## Examples
 ```
