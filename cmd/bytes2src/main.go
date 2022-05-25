@@ -30,7 +30,7 @@ func main() {
 	case "csharp", "c#", "C#", "CSharp":
 		l = bytes2src.CSharp
 	default:
-		fmt.Fprintf(os.Stderr, "supply a valid output language")
+		fmt.Fprintf(os.Stderr, "supply a valid output language\n")
 		os.Exit(-1)
 	}
 
@@ -40,25 +40,25 @@ func main() {
 	if (fi.Mode() & os.ModeCharDevice) == 0 {
 		data, err := io.ReadAll(os.Stdin)
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "error reading from pipe: %v", err)
+			fmt.Fprintf(os.Stderr, "error reading from pipe: %v\n", err)
 			os.Exit(-1)
 		}
 		d = data
 	} else if *f != "" {
 		file, err := os.Open(*f)
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "Could not open file %s: %v", *f, err)
+			fmt.Fprintf(os.Stderr, "Could not open file %s: %v\n", *f, err)
 			os.Exit(-1)
 		}
 
 		data, err := io.ReadAll(file)
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "failed to read data from file: %v", err)
+			fmt.Fprintf(os.Stderr, "failed to read data from file: %v\n", err)
 			os.Exit(-1)
 		}
 		d = data
 	} else {
-		fmt.Fprintf(os.Stderr, "must supply input from file with -f flag or from pipe")
+		fmt.Fprintf(os.Stderr, "must supply input from file with -f flag or from pipe\n")
 		os.Exit(-1)
 	}
 
@@ -67,7 +67,7 @@ func main() {
 		var err error
 		_, d, err = bytes2src.ReadHexDump(br)
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "error reading hexdump: %v", err)
+			fmt.Fprintf(os.Stderr, "error reading hexdump: %v\n", err)
 			os.Exit(-1)
 		}
 	}
@@ -76,18 +76,18 @@ func main() {
 	var err error
 	output, err = bytes2src.DumpString(br, l, *w)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "failed to convert bytes to source code: %v", err)
+		fmt.Fprintf(os.Stderr, "failed to convert bytes to source code: %v\n", err)
 		os.Exit(-1)
 	}
 
 	if *o != "" {
 		file, err := os.Open(*o)
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "could not open file for writing: %v", err)
+			fmt.Fprintf(os.Stderr, "could not open file for writing: %v\n", err)
 		}
 
 		if _, err = file.WriteString(*output); err != nil {
-			fmt.Fprintf(os.Stderr, "error writing output to file: %v", err)
+			fmt.Fprintf(os.Stderr, "error writing output to file: %v\n", err)
 			os.Exit(-1)
 		}
 	}
