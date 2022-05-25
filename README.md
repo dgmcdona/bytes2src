@@ -1,7 +1,8 @@
 # bytes2src
 
 This is a simple utility for converting binary data into a source code
-representation in multiple languages.
+representation in multiple languages. It can read either from a file with the
+`-f` flag, or from a pipe via `stdin`.
 
 ```
 Usage of bytes2src:
