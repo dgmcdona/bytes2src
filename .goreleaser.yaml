@@ -1,34 +1,32 @@
-# test this file with
-#   goreleaser --skip-publish --rm-dist --config goreleaser.yml
+# This is an example .goreleaser.yml file with some sensible defaults.
+# Make sure to check the documentation at https://goreleaser.com
+before:
+  hooks:
+    # You may remove this if you don't use go modules.
+    - go mod tidy
+    # you may remove this if you don't need go generate
+    - go generate ./...
 builds:
-  - main: ./cmd/bytes2src
-    binary: bytes2src
-    env:
+  - env:
       - CGO_ENABLED=0
-    ldflags:
-      - -s -w -X main.version={{.Version}}
     goos:
       - linux
-      - darwin
       - windows
-    goarch:
-      - 386
-      - amd64
-      - arm
-      - arm64
-    goarm:
-      - 6
-      - 7
+      - darwin
 archives:
-  - format: gz
-    files:
-      - none*
-release:
-  prerelease: auto
+  - replacements:
+      darwin: Darwin
+      linux: Linux
+      windows: Windows
+      386: i386
+      amd64: x86_64
+checksum:
+  name_template: 'checksums.txt'
+snapshot:
+  name_template: "{{ incpatch .Version }}-next"
 changelog:
   sort: asc
   filters:
     exclude:
-      - "^docs:"
-      - "^test:"
-
+      - '^docs:'
+      - '^test:'
