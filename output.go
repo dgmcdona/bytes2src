@@ -48,7 +48,7 @@ var languageFormats = map[Language]languageFormat{
 		LastByteCommaRequired: false,
 	},
 	CSharp: {
-		Initializer:           "= new []byte",
+		Initializer:           "= new byte[]",
 		ByteFmt:               "0x%02x",
 		BlockEnds:             []string{"{", "};"},
 		LastByteCommaRequired: false,
